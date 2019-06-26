@@ -14,7 +14,7 @@ Tras finalizar el proyecto el usuario será capaz de configurar las opciones bá
 ## VS CODE
 ### keybindings.json
 ~~~json
-// Place your key bindings in this file to override the defaults
+// Place your key bindings in this file to override the defaults edit
 [
     {
         "key": "ctrl+shift+numpad_subtract",
