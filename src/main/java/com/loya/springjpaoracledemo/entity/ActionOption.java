@@ -12,18 +12,29 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "MANAGEMENT_USER")
-public class User {
+@Table(name = "ACTION_OPTION")
+public class ActionOption {
     @Column(name = "ID")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "USER_NAME", nullable = true, length = 255)
+    @Column(name = "NAME", nullable = true, length = 255)
     private String name;
     
-    @Column(name = "PASSWORD", nullable = true, length = 255)
-    private String password;
+    @Column(name = "DESCRIPTION", nullable = true, length = 255)
+    private String description;
+    
+    @Column(name = "DNIS", nullable = true, length = 255)
+    private Integer dnis;
+    
+    @Column(name = "URL", nullable = true, length = 255)
+    private String url;
+    
+    @Column(name = "TYPE_ACTION", nullable = true, length = 255)
+    private String typeAction;
+
+
     
     @Column(name = "CREATION_DATE", nullable = true)
     private LocalDateTime creationDate;
@@ -39,15 +50,13 @@ public class User {
         creationDate = LocalDateTime.now();
     }
     
-    public User(String name, String find) {
+    public ActionOption(String name, String find) {
         this.name = name;
         this.find = find;
     }
     
-    protected User() {
+    protected ActionOption() {
     }
-
-    
 
     public Integer getId() {
         return this.id;
@@ -65,12 +74,28 @@ public class User {
         this.name = name;
     }
 
-    public String getPassword() {
-        return this.password;
+    public String getDescription() {
+        return this.description;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getDnis() {
+        return this.dnis;
+    }
+
+    public void setDnis(Integer dnis) {
+        this.dnis = dnis;
+    }
+
+    public String getUrl() {
+        return this.url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public LocalDateTime getCreationDate() {
@@ -102,7 +127,9 @@ public class User {
         return "{" +
             " id='" + getId() + "'" +
             ", name='" + getName() + "'" +
-            ", password='" + getPassword() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", dnis='" + getDnis() + "'" +
+            ", url='" + getUrl() + "'" +
             ", creationDate='" + getCreationDate() + "'" +
             ", modificationDate='" + getModificationDate() + "'" +
             ", find='" + getFind() + "'" +

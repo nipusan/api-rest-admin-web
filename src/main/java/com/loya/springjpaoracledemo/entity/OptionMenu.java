@@ -7,23 +7,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "MANAGEMENT_USER")
-public class User {
+@Table(name = "OPTION_MENU")
+public class OptionMenu {
     @Column(name = "ID")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "USER_NAME", nullable = true, length = 255)
+    @Column(name = "NAME", nullable = true, length = 255)
     private String name;
+
+    @Column(name = "DESCRIPTION", nullable = true, length = 255)
+    private String description;
     
-    @Column(name = "PASSWORD", nullable = true, length = 255)
-    private String password;
+    @ManyToOne
+    @JoinColumn(name = "ID_MENU", nullable = true)
+    private Menu idMenu;
     
     @Column(name = "CREATION_DATE", nullable = true)
     private LocalDateTime creationDate;
@@ -39,12 +45,12 @@ public class User {
         creationDate = LocalDateTime.now();
     }
     
-    public User(String name, String find) {
+    public OptionMenu(String name, String find) {
         this.name = name;
         this.find = find;
     }
     
-    protected User() {
+    protected OptionMenu() {
     }
 
     
@@ -65,12 +71,20 @@ public class User {
         this.name = name;
     }
 
-    public String getPassword() {
-        return this.password;
+    public String getDescription() {
+        return this.description;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Menu getIdMenu() {
+        return this.idMenu;
+    }
+
+    public void setIdMenu(Menu idMenu) {
+        this.idMenu = idMenu;
     }
 
     public LocalDateTime getCreationDate() {
@@ -102,7 +116,8 @@ public class User {
         return "{" +
             " id='" + getId() + "'" +
             ", name='" + getName() + "'" +
-            ", password='" + getPassword() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", idMenu='" + getIdMenu() + "'" +
             ", creationDate='" + getCreationDate() + "'" +
             ", modificationDate='" + getModificationDate() + "'" +
             ", find='" + getFind() + "'" +

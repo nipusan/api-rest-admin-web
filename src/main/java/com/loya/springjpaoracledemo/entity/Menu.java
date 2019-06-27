@@ -12,18 +12,15 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "MANAGEMENT_USER")
-public class User {
+@Table(name = "MENU")
+public class Menu {
     @Column(name = "ID")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "USER_NAME", nullable = true, length = 255)
+    @Column(name = "NAME", nullable = true, length = 255)
     private String name;
-    
-    @Column(name = "PASSWORD", nullable = true, length = 255)
-    private String password;
     
     @Column(name = "CREATION_DATE", nullable = true)
     private LocalDateTime creationDate;
@@ -39,12 +36,12 @@ public class User {
         creationDate = LocalDateTime.now();
     }
     
-    public User(String name, String find) {
+    public Menu(String name, String find) {
         this.name = name;
         this.find = find;
     }
     
-    protected User() {
+    protected Menu() {
     }
 
     
@@ -63,14 +60,6 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public LocalDateTime getCreationDate() {
@@ -102,7 +91,6 @@ public class User {
         return "{" +
             " id='" + getId() + "'" +
             ", name='" + getName() + "'" +
-            ", password='" + getPassword() + "'" +
             ", creationDate='" + getCreationDate() + "'" +
             ", modificationDate='" + getModificationDate() + "'" +
             ", find='" + getFind() + "'" +

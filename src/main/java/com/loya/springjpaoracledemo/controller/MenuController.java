@@ -1,7 +1,7 @@
 package com.loya.springjpaoracledemo.controller;
 
-import com.loya.springjpaoracledemo.entity.User;
-import com.loya.springjpaoracledemo.service.UserService;
+import com.loya.springjpaoracledemo.entity.Menu;
+import com.loya.springjpaoracledemo.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -13,45 +13,45 @@ import java.util.Optional;
 import java.time.LocalDateTime;
 
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/menu")
+public class MenuController {
     @Autowired
-    UserService userService;
+    MenuService menuService;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public List<User> getAllUsers() {
-        return this.userService.getAllUsers();
+    public List<Menu> getAllMenus() {
+        return this.menuService.getAllMenus();
     }
 
 
-    @RequestMapping(value = "/adduser", method = RequestMethod.POST,
+    @RequestMapping(value = "/addmenu", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public User addUser(@RequestBody User user) {
-        return this.userService.addUser(user);
+    public Menu addMenu(@RequestBody Menu menu) {
+        return this.menuService.addMenu(menu);
     }
 
 
-    @RequestMapping(value = "/updateuser", method = RequestMethod.PUT,
+    @RequestMapping(value = "/updatemenu", method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public User updateUser(@RequestBody User user) {
+    public Menu updateMenu(@RequestBody Menu menu) {
         LocalDateTime time = LocalDateTime.now();
-        user.setModificationDate(time);
-        return this.userService.updateUser(user);
+        menu.setModificationDate(time);
+        return this.menuService.updateMenu(menu);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Optional<User> getUser(@PathVariable String id) {
-        return this.userService.getUserById(Integer.parseInt(id));
+    public Optional<Menu> getMenu(@PathVariable String id) {
+        return this.menuService.getMenuById(Integer.parseInt(id));
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.DELETE)
-    public void deleteAllUsers() {
-        this.userService.deleteAllUsers();
+    public void deleteAllMenus() {
+        this.menuService.deleteAllMenus();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteUser(@PathVariable int id) {
-        this.userService.deleteUserById(id);
+    public void deleteMenu(@PathVariable int id) {
+        this.menuService.deleteMenuById(id);
     }
 
     @Autowired
@@ -61,8 +61,8 @@ public class UserController {
     public String greeting() {
         /**
          *   @LocaleContextHolder.getLocale()
-         *  Return the Locale associated with the given user context,if any, or the system default Locale otherwise.
-         *  This is effectively a replacement for Locale.getDefault(), able to optionally respect a user-level Locale setting.
+         *  Return the Locale associated with the given menu context,if any, or the system default Locale otherwise.
+         *  This is effectively a replacement for Locale.getDefault(), able to optionally respect a menu-level Locale setting.
          */
 
         return messageSource.getMessage("good.morning", null, LocaleContextHolder.getLocale());
