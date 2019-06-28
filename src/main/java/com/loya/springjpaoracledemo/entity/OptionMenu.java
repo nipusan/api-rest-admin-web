@@ -1,6 +1,7 @@
 package com.loya.springjpaoracledemo.entity;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,13 +24,16 @@ public class OptionMenu {
 
     @Column(name = "NAME", nullable = true, length = 255)
     private String name;
-
+    
+    @Column(name = "AUDIO_NAME", nullable = true, length = 255)
+    private String audioName;
+    
     @Column(name = "DESCRIPTION", nullable = true, length = 255)
     private String description;
     
     @ManyToOne
-    @JoinColumn(name = "ID_MENU", nullable = true)
-    private Menu idMenu;
+    @JoinColumn(name = "ID_ACTION_OPTION", nullable = true)
+    private ActionOption idActionOption;
     
     @Column(name = "CREATION_DATE", nullable = true)
     private LocalDateTime creationDate;
@@ -45,15 +49,20 @@ public class OptionMenu {
         creationDate = LocalDateTime.now();
     }
     
-    public OptionMenu(String name, String find) {
-        this.name = name;
-        this.find = find;
-    }
-    
     protected OptionMenu() {
     }
 
-    
+
+    public OptionMenu(Integer id, String name, String audioName, String description, ActionOption idActionOption, LocalDateTime creationDate, LocalDateTime modificationDate, String find) {
+        this.id = id;
+        this.name = name;
+        this.audioName = audioName;
+        this.description = description;
+        this.idActionOption = idActionOption;
+        this.creationDate = creationDate;
+        this.modificationDate = modificationDate;
+        this.find = find;
+    }
 
     public Integer getId() {
         return this.id;
@@ -71,6 +80,14 @@ public class OptionMenu {
         this.name = name;
     }
 
+    public String getAudioName() {
+        return this.audioName;
+    }
+
+    public void setAudioName(String audioName) {
+        this.audioName = audioName;
+    }
+
     public String getDescription() {
         return this.description;
     }
@@ -79,12 +96,12 @@ public class OptionMenu {
         this.description = description;
     }
 
-    public Menu getIdMenu() {
-        return this.idMenu;
+    public ActionOption getIdActionOption() {
+        return this.idActionOption;
     }
 
-    public void setIdMenu(Menu idMenu) {
-        this.idMenu = idMenu;
+    public void setIdActionOption(ActionOption idActionOption) {
+        this.idActionOption = idActionOption;
     }
 
     public LocalDateTime getCreationDate() {
@@ -111,18 +128,75 @@ public class OptionMenu {
         this.find = find;
     }
 
+    public OptionMenu id(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    public OptionMenu name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public OptionMenu audioName(String audioName) {
+        this.audioName = audioName;
+        return this;
+    }
+
+    public OptionMenu description(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public OptionMenu idActionOption(ActionOption idActionOption) {
+        this.idActionOption = idActionOption;
+        return this;
+    }
+
+    public OptionMenu creationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+        return this;
+    }
+
+    public OptionMenu modificationDate(LocalDateTime modificationDate) {
+        this.modificationDate = modificationDate;
+        return this;
+    }
+
+    public OptionMenu find(String find) {
+        this.find = find;
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof OptionMenu)) {
+            return false;
+        }
+        OptionMenu optionMenu = (OptionMenu) o;
+        return Objects.equals(id, optionMenu.id) && Objects.equals(name, optionMenu.name) && Objects.equals(audioName, optionMenu.audioName) && Objects.equals(description, optionMenu.description) && Objects.equals(idActionOption, optionMenu.idActionOption) && Objects.equals(creationDate, optionMenu.creationDate) && Objects.equals(modificationDate, optionMenu.modificationDate) && Objects.equals(find, optionMenu.find);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, audioName, description, idActionOption, creationDate, modificationDate, find);
+    }
+
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
             ", name='" + getName() + "'" +
+            ", audioName='" + getAudioName() + "'" +
             ", description='" + getDescription() + "'" +
-            ", idMenu='" + getIdMenu() + "'" +
+            ", idActionOption='" + getIdActionOption() + "'" +
             ", creationDate='" + getCreationDate() + "'" +
             ", modificationDate='" + getModificationDate() + "'" +
             ", find='" + getFind() + "'" +
             "}";
     }
 
-    
+
 }
