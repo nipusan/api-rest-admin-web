@@ -1,4 +1,4 @@
-package com.loya.springjpaoracledemo;
+package com.avaya.springjpaoracledemo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

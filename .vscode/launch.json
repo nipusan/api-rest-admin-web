@@ -14,7 +14,7 @@
             "type": "java",
             "name": "Debug (Launch)-SpringJpaOracleDemoApplication<spring-jpa-oracle-demo>",
             "request": "launch",
-            "mainClass": "com.loya.springjpaoracledemo.SpringJpaOracleDemoApplication",
+            "mainClass": "com.avaya.springjpaoracledemo.SpringJpaOracleDemoApplication",
             "projectName": "spring-jpa-oracle-demo"
         }
     ]
