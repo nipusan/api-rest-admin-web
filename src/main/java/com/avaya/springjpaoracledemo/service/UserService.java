@@ -10,30 +10,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
 
 @Service
 public class UserService {
     @Autowired
     UserDao userDao;
-
-    // private EntityManagerFactory emf;
-
-    // public User login(User user){
-	// 	User newUser = null;
-	// 	try {
-    //         EntityManager em = emf.createEntityManager();
-	// 		Query query = em.createNamedQuery("User.login");
-	// 		query.setParameter(1, user.getName());
-	// 		newUser = (User) query.getResultList();
-	// 	} catch (Exception e) {
-	// 		e.getStackTrace();
-	// 	}
-	// 	return newUser;
-	// }
-
 
     public List<User> getAllUsers() {
         return this.userDao.findAll();

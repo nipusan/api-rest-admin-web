@@ -7,18 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
 @Table(name = "USERS")
-@NamedQueries({
-	@NamedQuery(name="User.login", query="SELECT a FROM User u WHERE a.name = ?1 AND a.password")
-})
-
 public class User {
     @Column(name = "ID")
     @Id
