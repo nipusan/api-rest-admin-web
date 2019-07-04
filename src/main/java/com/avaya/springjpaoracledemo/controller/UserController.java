@@ -30,6 +30,12 @@ public class UserController {
     public User addUser(@RequestBody User user) {
         return this.userService.addUser(user);
     }
+    
+    // @RequestMapping(value = "/login", method = RequestMethod.POST,
+    //         consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    // public User login(@RequestBody User user) {
+    //     return this.userService.login(user);
+    // }
 
 
     @RequestMapping(value = "/updateuser", method = RequestMethod.PUT,
