@@ -10,9 +10,18 @@ El proyecto requiere dos pasos para completar su funcionalidad:
   
 Tras finalizar el proyecto el usuario será capaz de configurar las opciones básicas de un IVR sin un acompañamiento técnico.
 
-# Configuración de Entorno
-## VS CODE
-### keybindings.json
+##  **Roles de administración**
+
+Los roles de tarea predeterminados incluyen:
+*   #1  hmcsuperadmin (superadministrador).
+*   #2  hmcoperator (operador)
+*   #3  hmcviewer (visualizador)
+*   #4  hmcpe (ingeniero de producto)
+*   #5  hmcservicerep (representante del servicio)
+
+##  **Configuración de Entorno**
+### **Visual Code**
+#### keybindings.json
 ~~~json
 // Place your key bindings in this file to override the defaults edit
 [

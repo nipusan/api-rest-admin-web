@@ -1,6 +1,7 @@
 package com.avaya.springjpaoracledemo.entity;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,6 +26,9 @@ public class User {
     @Column(name = "PASSWORD", nullable = true, length = 255)
     private String password;
     
+    @Column(name = "PROFILE", nullable = true, length = 255)
+    private String profile;
+    
     @Column(name = "CREATION_DATE", nullable = true)
     private LocalDateTime creationDate;
 
@@ -39,15 +43,19 @@ public class User {
         creationDate = LocalDateTime.now();
     }
     
-    public User(String name, String find) {
-        this.name = name;
-        this.find = find;
-    }
-    
-    protected User() {
+
+    public User() {
     }
 
-    
+    public User(Integer id, String name, String password, String profile, LocalDateTime creationDate, LocalDateTime modificationDate, String find) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.profile = profile;
+        this.creationDate = creationDate;
+        this.modificationDate = modificationDate;
+        this.find = find;
+    }
 
     public Integer getId() {
         return this.id;
@@ -71,6 +79,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getProfile() {
+        return this.profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 
     public LocalDateTime getCreationDate() {
@@ -97,17 +113,68 @@ public class User {
         this.find = find;
     }
 
+    public User id(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    public User name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public User password(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public User profile(String profile) {
+        this.profile = profile;
+        return this;
+    }
+
+    public User creationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+        return this;
+    }
+
+    public User modificationDate(LocalDateTime modificationDate) {
+        this.modificationDate = modificationDate;
+        return this;
+    }
+
+    public User find(String find) {
+        this.find = find;
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof User)) {
+            return false;
+        }
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(password, user.password) && Objects.equals(profile, user.profile) && Objects.equals(creationDate, user.creationDate) && Objects.equals(modificationDate, user.modificationDate) && Objects.equals(find, user.find);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, password, profile, creationDate, modificationDate, find);
+    }
+
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
             ", name='" + getName() + "'" +
             ", password='" + getPassword() + "'" +
+            ", profile='" + getProfile() + "'" +
             ", creationDate='" + getCreationDate() + "'" +
             ", modificationDate='" + getModificationDate() + "'" +
             ", find='" + getFind() + "'" +
             "}";
     }
-
     
 }
