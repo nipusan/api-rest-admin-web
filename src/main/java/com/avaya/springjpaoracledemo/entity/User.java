@@ -20,36 +20,42 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column(name = "FULLNAME", nullable = true, length = 255)
+    private String fullName;
+
     @Column(name = "USER_NAME", nullable = true, length = 255)
-    private String name;
-    
+    private String username;
+
     @Column(name = "PASSWORD", nullable = true, length = 255)
     private String password;
-    
+
     @Column(name = "PROFILE", nullable = true, length = 255)
-    private String profile;
-    
+    private Integer profile;
+
     @Column(name = "CREATION_DATE", nullable = true)
     private LocalDateTime creationDate;
 
     @Column(name = "MODIFICATION_DATE", nullable = true)
     private LocalDateTime modificationDate;
-    
+
     @Transient
     private String find;
 
     @PrePersist
     public void prePersist() {
         creationDate = LocalDateTime.now();
+        if (profile == null) {
+            profile = 3;
+        }
     }
-    
 
     public User() {
     }
 
-    public User(Integer id, String name, String password, String profile, LocalDateTime creationDate, LocalDateTime modificationDate, String find) {
+    public User(Integer id, String fullName, String username, String password, Integer profile, LocalDateTime creationDate, LocalDateTime modificationDate, String find) {
         this.id = id;
-        this.name = name;
+        this.fullName = fullName;
+        this.username = username;
         this.password = password;
         this.profile = profile;
         this.creationDate = creationDate;
@@ -65,12 +71,20 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return this.name;
+    public String getFullName() {
+        return this.fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -81,11 +95,11 @@ public class User {
         this.password = password;
     }
 
-    public String getProfile() {
+    public Integer getProfile() {
         return this.profile;
     }
 
-    public void setProfile(String profile) {
+    public void setProfile(Integer profile) {
         this.profile = profile;
     }
 
@@ -118,8 +132,13 @@ public class User {
         return this;
     }
 
-    public User name(String name) {
-        this.name = name;
+    public User fullName(String fullName) {
+        this.fullName = fullName;
+        return this;
+    }
+
+    public User username(String username) {
+        this.username = username;
         return this;
     }
 
@@ -128,7 +147,7 @@ public class User {
         return this;
     }
 
-    public User profile(String profile) {
+    public User profile(Integer profile) {
         this.profile = profile;
         return this;
     }
@@ -156,19 +175,20 @@ public class User {
             return false;
         }
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(password, user.password) && Objects.equals(profile, user.profile) && Objects.equals(creationDate, user.creationDate) && Objects.equals(modificationDate, user.modificationDate) && Objects.equals(find, user.find);
+        return Objects.equals(id, user.id) && Objects.equals(fullName, user.fullName) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(profile, user.profile) && Objects.equals(creationDate, user.creationDate) && Objects.equals(modificationDate, user.modificationDate) && Objects.equals(find, user.find);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, password, profile, creationDate, modificationDate, find);
+        return Objects.hash(id, fullName, username, password, profile, creationDate, modificationDate, find);
     }
 
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
+            ", fullName='" + getFullName() + "'" +
+            ", username='" + getUsername() + "'" +
             ", password='" + getPassword() + "'" +
             ", profile='" + getProfile() + "'" +
             ", creationDate='" + getCreationDate() + "'" +
@@ -176,5 +196,6 @@ public class User {
             ", find='" + getFind() + "'" +
             "}";
     }
-    
+
+
 }

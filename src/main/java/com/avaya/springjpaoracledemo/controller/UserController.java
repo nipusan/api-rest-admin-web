@@ -34,6 +34,7 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> login(@RequestBody User user) {
+        System.out.println("user request: " + user);
         return this.userService.login(user);
     }
 

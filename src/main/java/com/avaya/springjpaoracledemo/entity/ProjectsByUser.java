@@ -24,11 +24,11 @@ public class ProjectsByUser {
     
     @ManyToOne
     @JoinColumn(name = "ID_PROJECT", nullable = true)
-    private Projects idProject;
+    private Projects project;
     
     @ManyToOne
     @JoinColumn(name = "ID_USER", nullable = true)
-    private User idUser;
+    private User user;
     
     @Column(name = "CREATION_DATE", nullable = true)
     private LocalDateTime creationDate;
@@ -45,13 +45,14 @@ public class ProjectsByUser {
     }
 
 
+
     public ProjectsByUser() {
     }
 
-    public ProjectsByUser(Integer id, Projects idProject, User idUser, LocalDateTime creationDate, LocalDateTime modificationDate, String find) {
+    public ProjectsByUser(Integer id, Projects project, User user, LocalDateTime creationDate, LocalDateTime modificationDate, String find) {
         this.id = id;
-        this.idProject = idProject;
-        this.idUser = idUser;
+        this.project = project;
+        this.user = user;
         this.creationDate = creationDate;
         this.modificationDate = modificationDate;
         this.find = find;
@@ -65,20 +66,20 @@ public class ProjectsByUser {
         this.id = id;
     }
 
-    public Projects getIdProject() {
-        return this.idProject;
+    public Projects getProject() {
+        return this.project;
     }
 
-    public void setIdProject(Projects idProject) {
-        this.idProject = idProject;
+    public void setProject(Projects project) {
+        this.project = project;
     }
 
-    public User getIdUser() {
-        return this.idUser;
+    public User getUser() {
+        return this.user;
     }
 
-    public void setIdUser(User idUser) {
-        this.idUser = idUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public LocalDateTime getCreationDate() {
@@ -110,13 +111,13 @@ public class ProjectsByUser {
         return this;
     }
 
-    public ProjectsByUser idProject(Projects idProject) {
-        this.idProject = idProject;
+    public ProjectsByUser project(Projects project) {
+        this.project = project;
         return this;
     }
 
-    public ProjectsByUser idUser(User idUser) {
-        this.idUser = idUser;
+    public ProjectsByUser user(User user) {
+        this.user = user;
         return this;
     }
 
@@ -143,25 +144,26 @@ public class ProjectsByUser {
             return false;
         }
         ProjectsByUser projectsByUser = (ProjectsByUser) o;
-        return Objects.equals(id, projectsByUser.id) && Objects.equals(idProject, projectsByUser.idProject) && Objects.equals(idUser, projectsByUser.idUser) && Objects.equals(creationDate, projectsByUser.creationDate) && Objects.equals(modificationDate, projectsByUser.modificationDate) && Objects.equals(find, projectsByUser.find);
+        return Objects.equals(id, projectsByUser.id) && Objects.equals(project, projectsByUser.project) && Objects.equals(user, projectsByUser.user) && Objects.equals(creationDate, projectsByUser.creationDate) && Objects.equals(modificationDate, projectsByUser.modificationDate) && Objects.equals(find, projectsByUser.find);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, idProject, idUser, creationDate, modificationDate, find);
+        return Objects.hash(id, project, user, creationDate, modificationDate, find);
     }
 
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", idProject='" + getIdProject() + "'" +
-            ", idUser='" + getIdUser() + "'" +
+            ", project='" + getProject() + "'" +
+            ", user='" + getUser() + "'" +
             ", creationDate='" + getCreationDate() + "'" +
             ", modificationDate='" + getModificationDate() + "'" +
             ", find='" + getFind() + "'" +
             "}";
     }
+   
     
 
 }

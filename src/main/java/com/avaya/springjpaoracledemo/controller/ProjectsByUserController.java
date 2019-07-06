@@ -45,14 +45,19 @@ public class ProjectsByUserController {
         return this.projectsByUserService.getProjectsByUserById(Integer.parseInt(id));
     }
 
+    @RequestMapping(value = "/byUser/{id}", method = RequestMethod.GET)
+    public List<ProjectsByUser> getProjectsByUserId(@PathVariable Integer id) {
+        return this.projectsByUserService.getProjectsByUser(id);
+    }
+
     @RequestMapping(value = "/all", method = RequestMethod.DELETE)
     public void deleteAllProjectsByUsers() {
         this.projectsByUserService.deleteAllProjectsByUsers();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteProjectsByUser(@PathVariable int id) {
-        this.projectsByUserService.deleteProjectsByUserById(id);
+    public void deleteProjectsByUser(@PathVariable String id) {
+        this.projectsByUserService.deleteProjectsByUserById(Integer.parseInt(id));
     }
 
     @Autowired

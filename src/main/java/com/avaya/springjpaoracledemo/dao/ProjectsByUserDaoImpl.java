@@ -11,30 +11,29 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import com.avaya.springjpaoracledemo.entity.ProjectsByUser;
 import com.avaya.springjpaoracledemo.entity.User;
+
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserDaoImpl {
+public class ProjectsByUserDaoImpl {
+    
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<User> getData(HashMap<String, Object> conditions) {
+    public List<ProjectsByUser> getDataByUser(HashMap<String, Object> conditions) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<User> query = cb.createQuery(User.class);
-        Root<User> root = query.from(User.class);
+        CriteriaQuery<ProjectsByUser> query = cb.createQuery(ProjectsByUser.class);
+        Root<ProjectsByUser> root = query.from(ProjectsByUser.class);
 
         List<Predicate> predicates = new ArrayList<>();
         conditions.forEach((field, value) -> {
             switch (field) {
-            case "username":
-                predicates.add(cb.equal(root.get(field), (String) value));
-                break;
-            case "password":
-                predicates.add(cb.and(cb.equal(root.get(field), (String) value)));
+            case "user":
+                predicates.add(cb.equal(root.get(field), (User) value));
                 break;
             }
-
         });
         query.select(root).where(predicates.toArray(new Predicate[predicates.size()]));
         return entityManager.createQuery(query).getResultList();

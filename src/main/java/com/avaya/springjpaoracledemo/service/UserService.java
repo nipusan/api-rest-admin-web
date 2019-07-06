@@ -31,7 +31,7 @@ public class UserService {
 
     public List<User> login(User user) {
         HashMap<String,Object> conditions = new HashMap<>();
-        conditions.put("name",user.getName());
+        conditions.put("username",user.getUsername());
         conditions.put("password",user.getPassword());
         return this.userDaoImpl.getData(conditions);
     }
