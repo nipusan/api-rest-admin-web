@@ -24,7 +24,7 @@ public class ProjectsByUser {
     
     @ManyToOne
     @JoinColumn(name = "ID_PROJECT", nullable = true)
-    private Projects project;
+    private Project project;
     
     @ManyToOne
     @JoinColumn(name = "ID_USER", nullable = true)
@@ -49,7 +49,7 @@ public class ProjectsByUser {
     public ProjectsByUser() {
     }
 
-    public ProjectsByUser(Integer id, Projects project, User user, LocalDateTime creationDate, LocalDateTime modificationDate, String find) {
+    public ProjectsByUser(Integer id, Project project, User user, LocalDateTime creationDate, LocalDateTime modificationDate, String find) {
         this.id = id;
         this.project = project;
         this.user = user;
@@ -66,11 +66,11 @@ public class ProjectsByUser {
         this.id = id;
     }
 
-    public Projects getProject() {
+    public Project getProject() {
         return this.project;
     }
 
-    public void setProject(Projects project) {
+    public void setProject(Project project) {
         this.project = project;
     }
 
@@ -111,7 +111,7 @@ public class ProjectsByUser {
         return this;
     }
 
-    public ProjectsByUser project(Projects project) {
+    public ProjectsByUser project(Project project) {
         this.project = project;
         return this;
     }

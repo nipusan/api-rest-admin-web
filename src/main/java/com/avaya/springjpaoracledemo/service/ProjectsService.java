@@ -1,7 +1,7 @@
 package com.avaya.springjpaoracledemo.service;
 
 import com.avaya.springjpaoracledemo.dao.ProjectsDao;
-import com.avaya.springjpaoracledemo.entity.Projects;
+import com.avaya.springjpaoracledemo.entity.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -15,22 +15,22 @@ public class ProjectsService {
     @Autowired 
     ProjectsDao projectsDao;
 
-    public List<Projects> getAllProjectss() {
+    public List<Project> getAllProjectss() {
         return this.projectsDao.findAll();
     }
 
-    public Projects addProjects(Projects user) {
+    public Project addProjects(Project user) {
         return this.projectsDao.save(user);
     }
 
     //other methods go here
 
 
-    public Optional<Projects> getProjectsById(int id) {
+    public Optional<Project> getProjectsById(int id) {
         return this.projectsDao.findById(id);
     }
 
-    public Projects updateProjects(Projects user) {
+    public Project updateProjects(Project user) {
         return this.projectsDao.save(user);
     }
 

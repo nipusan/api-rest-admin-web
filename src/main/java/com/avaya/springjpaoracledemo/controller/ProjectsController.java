@@ -1,6 +1,6 @@
 package com.avaya.springjpaoracledemo.controller;
 
-import com.avaya.springjpaoracledemo.entity.Projects;
+import com.avaya.springjpaoracledemo.entity.Project;
 import com.avaya.springjpaoracledemo.service.ProjectsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -20,28 +20,28 @@ public class ProjectsController {
     ProjectsService projectsService;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public List<Projects> getAllProjectss() {
+    public List<Project> getAllProjectss() {
         return this.projectsService.getAllProjectss();
     }
 
 
     @RequestMapping(value = "/addprojects", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Projects addProjects(@RequestBody Projects projects) {
+    public Project addProjects(@RequestBody Project projects) {
         return this.projectsService.addProjects(projects);
     }
 
 
     @RequestMapping(value = "/updateprojects", method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Projects updateProjects(@RequestBody Projects projects) {
+    public Project updateProjects(@RequestBody Project projects) {
         LocalDateTime time = LocalDateTime.now();
         projects.setModificationDate(time);
         return this.projectsService.updateProjects(projects);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Optional<Projects> getProjects(@PathVariable String id) {
+    public Optional<Project> getProjects(@PathVariable String id) {
         return this.projectsService.getProjectsById(Integer.parseInt(id));
     }
 
