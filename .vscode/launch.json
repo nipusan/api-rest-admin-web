@@ -12,9 +12,9 @@
         },
         {
             "type": "java",
-            "name": "Debug (Launch)-SpringJpaOracleDemoApplication<spring-jpa-oracle-demo>",
+            "name": "Debug (Launch)-ApiRestProccessApplication<spring-jpa-oracle-demo>",
             "request": "launch",
-            "mainClass": "com.avaya.springjpaoracledemo.SpringJpaOracleDemoApplication",
+            "mainClass": "com.avaya.proccess.ApiRestProccessApplication",
             "projectName": "spring-jpa-oracle-demo"
         }
     ]
